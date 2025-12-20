@@ -14,7 +14,6 @@
 </head>
 <body class="min-h-screen">
 
-    <!-- Navbar -->
     <nav class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3">
@@ -24,7 +23,6 @@
                 <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Useful Tools</h1>
             </div>
 
-            <!-- Search Bar (Unified for Folders and Links) -->
             <div class="relative w-full md:w-96">
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
                 <input type="text" id="mainSearch" onkeyup="filterView()" 
@@ -36,34 +34,29 @@
 
     <main class="max-w-6xl mx-auto px-6 py-10">
         
-        <!-- Folder View (Grid) -->
         <div id="folderGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Loading state -->
             <div class="col-span-full text-center py-20 text-gray-400">
                 <i class="fas fa-spinner fa-spin text-3xl mb-4"></i>
                 <p>Reading info.txt...</p>
             </div>
         </div>
 
-        <!-- Links View (List) -->
         <div id="linksView" class="hidden">
             <div class="flex items-center gap-4 mb-8">
                 <button onclick="showFolders()" class="flex items-center gap-2 text-indigo-600 font-semibold hover:bg-indigo-50 px-3 py-1.5 rounded-lg transition-all">
-                    <i class="fas fa-chevron-left"></i> Back to Folders
+                    <i class="fas fa-chevron-left"></i> Back to Root
                 </button>
                 <h2 id="activeFolderName" class="text-2xl font-bold text-gray-900"></h2>
             </div>
             <div id="linkList" class="bg-white rounded-2xl shadow-sm border border-gray-100 divide-y divide-gray-50 overflow-hidden">
-                <!-- Links injected here -->
             </div>
         </div>
 
     </main>
 
     <script>
-        let categories = []; // Extracted from info.txt
+        let categories = [];
 
-        // 1. Fetch main info.txt to get folder list
         async function loadApp() {
             try {
                 const response = await fetch('info.txt');
@@ -90,7 +83,6 @@
             }
         }
 
-        // 2. Render Categories (Folders)
         function renderFolders() {
             const grid = document.getElementById('folderGrid');
             grid.innerHTML = categories.map(cat => `
@@ -105,7 +97,6 @@
             `).join('');
         }
 
-        // 3. Open a Folder and Fetch its url.txt
         async function openFolder(folderName) {
             document.getElementById('folderGrid').classList.add('hidden');
             document.getElementById('linksView').classList.remove('hidden');
@@ -153,11 +144,9 @@
             renderFolders();
         }
 
-        // 4. Integrated Search
         function filterView() {
             const query = document.getElementById('mainSearch').value.toLowerCase();
             
-            // If in Folder View
             if (!document.getElementById('folderGrid').classList.contains('hidden')) {
                 const cards = document.querySelectorAll('.folder-card');
                 cards.forEach(card => {
@@ -165,7 +154,6 @@
                     card.style.display = title.includes(query) ? 'block' : 'none';
                 });
             } 
-            // If in Links View
             else {
                 const links = document.querySelectorAll('.link-item');
                 links.forEach(link => {
@@ -175,8 +163,11 @@
             }
         }
 
-        // Initial Load
         loadApp();
     </script>
+    <a href="https://tiwut.de/cookie-banner-information.html" style="color: #a0a0a0; text-decoration: none; font-size: 0.8rem;">Legal Notice</a>
+    <script data-goatcounter="https://tiwut.goatcounter.com/count"async src="//gc.zgo.at/count.js"></script>
+    <script src="https://tiwut.de/cookie.notice.js"></script>
+    <script src="https://tiwut.de/Script/enforce_https.js" defer></script>
 </body>
 </html>
