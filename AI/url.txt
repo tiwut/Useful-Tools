@@ -1,2 +1,7 @@
 Google AI Studio | https://aistudio.google.com
 Gemini | https://gemini.google.com
+Microsoft Copilot | https://copilot.microsoft.com
+ChatGPT | https://chatgpt.com
+DeepAI | https://deepai.org
+Grok | https://grok.com
+Meta AI | https://www.meta.ai
